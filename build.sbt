@@ -30,6 +30,7 @@ val baseSettings = Seq(
     _.filterNot(Set("-Ywarn-unused-import"))
   },
   resolvers ++= Seq(
+    Resolver.mavenLocal,
     Resolver.sonatypeRepo("releases"),
     Resolver.sonatypeRepo("snapshots")
   ),
@@ -57,6 +58,7 @@ lazy val benchmark = project.in(file("."))
       "io.argonaut" %% "argonaut" % "6.2",
       "io.spray" %% "spray-json" % "1.3.3",
       "org.json4s" %% "json4s-jackson" % "3.5.3",
+      "com.avsystem.commons" %% "commons-shared" % "1.24.0-SNAPSHOT",
       "org.scalatest" %% "scalatest" % scalaTestVersion % Test,
       compilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
     ),

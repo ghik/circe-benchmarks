@@ -1,10 +1,11 @@
 package io.circe.benchmarks
 
 import java.util.concurrent.TimeUnit
+
 import org.openjdk.jmh.annotations._
 
 class ExampleData extends ArgonautData with CirceData with SprayData with PlayData
-  with Json4sData with JacksonData {
+  with Json4sData with JacksonData with GenCodecData {
   lazy val ints: List[Int] = (0 to 1000).toList
 
   lazy val foos: Map[String, Foo] = List.tabulate(100) { i =>
@@ -51,7 +52,7 @@ class CirceOnlyReadingBenchmark extends ExampleData with CirceReading
 @OutputTimeUnit(TimeUnit.SECONDS)
 class WritingBenchmark extends ExampleData
   with ArgonautWriting with CirceWriting with SprayWriting with PlayWriting
-  with Json4sWriting with JacksonWriting
+  with Json4sWriting with JacksonWriting with GenCodecWriting
 
 /**
  * Compare the performance of reading operations.
@@ -65,7 +66,7 @@ class WritingBenchmark extends ExampleData
 @OutputTimeUnit(TimeUnit.SECONDS)
 class ReadingBenchmark extends ExampleData
   with ArgonautReading with CirceReading with SprayReading with PlayReading
-  with Json4sReading with JacksonReading
+  with Json4sReading with JacksonReading with GenCodecReading
 
 /**
  * Compare the performance of encoding operations.
@@ -79,7 +80,7 @@ class ReadingBenchmark extends ExampleData
 @OutputTimeUnit(TimeUnit.SECONDS)
 class EncodingBenchmark extends ExampleData
   with ArgonautEncoding with CirceEncoding with SprayEncoding with PlayEncoding
-  with Json4sEncoding with JacksonEncoding
+  with Json4sEncoding with JacksonEncoding with GenCodecEncoding
 
 /**
  * Compare the performance of decoding operations.
@@ -93,7 +94,7 @@ class EncodingBenchmark extends ExampleData
 @OutputTimeUnit(TimeUnit.SECONDS)
 class DecodingBenchmark extends ExampleData
   with ArgonautDecoding with CirceDecoding with SprayDecoding with PlayDecoding
-  with Json4sDecoding with JacksonDecoding
+  with Json4sDecoding with JacksonDecoding with GenCodecDecoding
 
 /**
  * Compare the performance of printing operations.
